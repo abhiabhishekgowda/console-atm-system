@@ -20,7 +20,7 @@ if name in accounts:
             while is_running:
 
                 print(f"\n---{name}'s SESSION---")
-                print("1. Balance | 2. Deposit | 3. Withdraw | 4. Check History | 5. Exit")
+                print("1. Balance | 2. Deposit | 3. Withdraw | 4. Check History | 5. Change PIN | 6. Exit")
                 try:
                     choice = int(input("Enter your choice: "))
                 except ValueError:
@@ -60,11 +60,22 @@ if name in accounts:
                         print("Invalid input. Please enter a number.")
             
                 elif choice == 4:
-                    print("Your transaction history:")
-                    for h in accounts[name]['history']:
-                        print("-", h)
+                    if not accounts[name]['history']:
+                        print("No transactions yet.")
+                    else:
+                        print("Your transaction history:")
+                        for h in accounts[name]['history']:
+                            print("-", h)
             
                 elif choice == 5:
+                    new_pin = input("Enter new PIN: ")
+                    if new_pin.isdigit() and len(new_pin) == 4:
+                        accounts[name]['pin'] = new_pin
+                        print("PIN changed successfully!")
+                    else:
+                        print("Invalid PIN! Must be a 4-digit number.")
+
+                elif choice == 6:
                     print("Exiting... Thank you!")
                     is_running = False
             
@@ -77,8 +88,36 @@ if name in accounts:
     if attempts == 0:
         print("Account blocked due to too many failed attempts.")
 else:
-    print("Name not found in database.")
-                    
+    new_user = input("Name not found. Open new account? (y/n): ").lower()
+
+    if new_user == "y":
+        pin = input("Enter new PIN: ")
+
+        try:
+            deposit = int(input("Enter initial deposit: "))
+
+            if deposit >= 0:
+                accounts[name] = {
+                    "balance": deposit,
+                    "pin": pin,
+                    "history": []
+                }
+
+                print("Account successfully created!")
+            else:
+                print("Invalid funds!")
+
+        except ValueError:
+            print("Enter a valid number!")
+
+    else:
+        print("Goodbye.")
+
+
+
+
+
+    
 
 
 
