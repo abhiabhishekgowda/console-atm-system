@@ -1,7 +1,12 @@
-print("---WELCOME TO THE COMMUNITY BANK---")
+import os
 
-accounts = {
-    "sam": {"balance": 27000, "pin": '2136', "history": []},
+import json
+try:
+    with open("accounts.json", "r") as f:
+        accounts = json.load(f)
+except FileNotFoundError:
+    accounts = {
+        "sam": {"balance": 27000, "pin": '2136', "history": []},
     "abhi": {"balance": 30000, "pin": '9972', "history": []},
     "manya": {"balance": 80000, "pin": '2136', "history": []}
 }
@@ -29,6 +34,7 @@ if name in accounts:
             
                 if choice == 1:
                     print(f"Your balance is: {accounts[name]['balance']}")
+                    
             
                 elif choice == 2:
                     try:
@@ -75,7 +81,11 @@ if name in accounts:
                     else:
                         print("Invalid PIN! Must be a 4-digit number.")
 
+                    
+
                 elif choice == 6:
+                    with open("accounts.json", "w") as f:
+                        json.dump(accounts, f, indent=4)
                     print("Exiting... Thank you!")
                     is_running = False
             
@@ -104,6 +114,8 @@ else:
                 }
 
                 print("Account successfully created!")
+                with open("accounts.json", "w") as f:
+                    json.dump(accounts, f, indent=4)
             else:
                 print("Invalid funds!")
 
