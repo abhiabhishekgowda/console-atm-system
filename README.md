@@ -1,43 +1,33 @@
-# CONSOLE ATM SYSTEM
+# Console ATM System - Month 1 Project
 
-A Python-based console ATM application built step by step to practice **programming logic**, **clean code structure**, and **backend fundamentals**.
-
----
+A fully functional console-based ATM simulator built in Python as my first major project in the 6-month backend roadmap.
 
 ## Features
-- User account creation with secure PIN
-- Login system
-- Balance checking
-- Deposit and withdrawal
-- Transaction history stored in JSON
+- Secure PIN login with 3 attempts and account lockout
+- Check balance, deposit, withdraw (with ₹25,000 daily limit)
+- Money transfer between users (updates both accounts)
+- Transaction history with timestamps + keyword search
+- Change PIN
+- New account creation with initial deposit
+- Persistent data using JSON file (balances and history saved after every run)
 
----
+## Technologies Used
+- Python 3
+- JSON for data persistence
+- datetime for timestamps
 
-## Project Structure
-
-```text
-CONSOLE-ATM-SYSTEM/
-│
-├── atm.py        # Main program entry point
-├── account.py    # Account-related logic
-├── utils.py      # Helper and utility functions
-├── data.json     # Stores account and transaction data
-└── README.md     # Project documentation
-```
-
----
+## What I Learned
+- Functions and code organization
+- File handling (load/save JSON)
+- Input validation and error handling
+- Basic banking logic (daily limits, transfers, history)
 
 ## How to Run
-1. Install Python 3.x  
-2. Run the program using:
-```bash
-python atm.py
-```
+1. Clone the repo
+2. Run `python atm.py`
+
+## Next Steps
+Moving to Month 2: SQLite + Library Management System
 
 ---
-
-## Purpose
-This project is built to improve **problem-solving skills**, **program structure**, and **real-world logic implementation** in Python.  
-It is designed to demonstrate **clean coding practices** and **portfolio readiness**.
-
-
+Completed on March 2026 | Part of my self-taught backend journey
